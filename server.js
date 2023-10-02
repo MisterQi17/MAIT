@@ -1,4 +1,4 @@
-var mysql = require('mysql'); //install all the required packages for the server
+//var mysql = require('mysql'); //install all the required packages for the server
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -6,7 +6,7 @@ const fs = require('fs');
 const app = express();
 const port = 3000; 
 
-var connection = mysql.createConnection({ // create a sql connection to the database
+/*var connection = mysql.createConnection({ // create a sql connection to the database
   host: "127.0.0.1",
   port: 3306,
   user: "root",
@@ -20,7 +20,7 @@ connection.connect((err) => { // check if the connection has created successfull
   } else {
     console.log("Connected to the database!");
   }
-});
+}); */
 
 // Middleware to parse incoming request bodies
 app.use(express.static('public'));
