@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" path1tent="width=device-width, initial-scale=1.0" />
+    <title>MAIT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+          <!--African continent visualization-->
+          <div class="col-4" style="background:#b4dff8;">
+            <div class="ms-3 mb-4 bottom-left-countries">
+              <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" 
+              data-bs-content="Select one of the countries to view the vizualization. You can hover onto one of the countries to see its name.">
+                Help ?
+              </button>
+            </div>
+            <svg id="map" width="100%" height="100%"></svg>
+          </div>
+          
+          <!--Network topology visualization-->
+          <div class="col-6">
+            <div class="btn-group-vertical custom-size-vertical position-absolute" role="group" aria-label="Basic example">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="p2c" checked>
+                <label class="form-check-label" for="p2c">P2C</label>
+              </div> 
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="p2p" checked>
+                <label class="form-check-label" for="p2p">P2P</label>
+              </div>       
+            </div>
+            <div class="btn-group custom-size-horizontal top-center mt-3" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-primary" id="as">AS Relationships</button>
+              <button type="button" class="btn btn-primary" id="ixp">IXP Relationships</button>          
+            </div>
+              
+              <nav class="top-center-nav position-absolute" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb" id="navigation"></ol>
+              </nav>
+            <div class="d-flex flex-column justify-content-end align-items-end mt-3">
+              <p>Size of Circles based on:</p>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="customers" value="customers" checked>
+                <label class="form-check-label" for="customers">
+                  Customers
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="peers" value="peers">
+                <label class="form-check-label" for="peers">
+                  Peers
+                </label>
+              </div>
+            </div>
+            <div class="btn-group mt-4 bottom-center" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-primary custom-size" id="zoomIn"><b>+</b></button>
+              <button type="button" class="btn btn-primary custom-size" id="zoomOut"><b>-</b></button>
+              <button type="button" class="btn btn-primary" id="resetZoom">Reset Zoom Level</button>
+            </div>
+            <div class="btn-group mt-4 bottom-left" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" 
+              data-bs-content="The nodes represent ASes. The lines or links connecting the nodes represent the relationships between ASes. The BLUE lines are peer-to-customer (p2c) relationships and the RED lines are peer-to-peer (p2p) relationships.
+              You can click on one of the AS names in the list to find the node. You can hover onto one of the nodes to see more details. 
+              You can drag the nodes to see it clearer if the nodes are overlaying. You can also double-click on a node to filter it.">
+                Graph Info
+              </button>
+            </div>
+            <div class="btn-group mt-4 bottom-right" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary" id="filter" disabled>Clear the Filter</button>
+            </div>
+            <svg id="viz" width="800" height="635"></svg>
+          </div>
+
+          <!--Group List Component-->
+          <div class="col-2" style="background:#b4dff8;">
+            <textarea readonly class="form-control mt-3" id="asRelationship" style="display: block; text-align: center;" rows="3"></textarea>
+
+            <div class="input-group mt-3">
+              <input type="text" class="form-control" placeholder="Search" id="searchInput">
+            </div>
+            <p class="text-center fw-medium" id="filterText"></p>
+            <div class="list-group list-group-numbered" id="asList">
+            </div>
+
+            <div class="button-container mt-3">
+              <button type="button" class="btn btn-primary mode-size me-4" id="zoom" active>Zoom Mode</button>
+              <button type="button" class="btn btn-primary mode-size" id="twoAS">Relationship Mode</button>             
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+        $('[data-bs-toggle="popover"]').popover();
+      });
+    </script>
+
+    <script src="script.js"></script> 
+</body>
+
+</html>
+ 
+  
+

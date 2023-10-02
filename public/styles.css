@@ -1,0 +1,161 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+.country {
+    fill: rgb(161, 172, 182);
+    stroke: black;
+    stroke-opacity: 0.4;
+  }
+
+.country:hover {
+    fill:aqua;
+}
+
+.selectedCountry {
+	fill:aqua
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; /* Ensure the column takes at least the full viewport height */
+}
+
+.top-center {
+	top: 0;
+	left: 58%;
+	transform: translateX(-50%);
+}
+
+.top-center-nav {
+	top: 7%;
+	left: 58%;
+	transform: translateX(-50%);
+}
+
+.bottom-center {
+	bottom: 2%;
+	left: 58%;
+	transform: translateX(-50%);
+}
+
+.bottom-right {
+	bottom: 2%;
+	left: 75%;
+}
+
+.bottom-left {
+	bottom: 2%;
+	left: 35%;
+}
+
+.bottom-left-countries {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.top-left {
+	top: 0;
+	left: 0;
+}
+
+.breadcrumb-item {
+	font-size: 18px; 
+	font-weight: bold;
+}
+
+.btn-group {
+	position: absolute;
+}
+
+.btn {
+	color: #000000;
+	background-color: #82cbf5;
+	border-color: #000000;
+	padding: 0.4rem;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center; /* Horizontally center buttons */
+	align-items: center; /* Vertically center buttons */
+}
+
+.label {
+	text-align: center;
+}
+
+.custom-size {
+	width: 100px; 
+	height: 40px; 
+}
+
+.mode-size {
+	width: 100px; 
+	height: 60px; 
+}
+
+.custom-size-vertical {
+	width: 50px; 
+	height: 100px; 
+}
+
+.custom-size-horizontal {
+	width: 500px; 
+	height: 40px; 
+}
+
+.tooltip {
+	position: absolute;
+	text-align: center;
+	padding: 5px;
+	font: 12px sans-serif;
+	background: lightsteelblue;
+	border-radius: 4px;
+	pointer-events: none;
+}
+
+.links line {
+    stroke: #999;
+    stroke-opacity: 0.7;
+}
+
+.nodes circle {
+    fill: black	;
+    stroke-width: 2px;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Set the container height to fill the viewport */
+}
+  
+.left-section {
+    flex: 1;
+    background-color: #b4dff8;
+    /* Adjust padding or other styles as needed */
+}
+  
+.right-section {
+    flex: 1;
+    background-color: #ffffff;
+    /* Adjust padding or other styles as needed */
+}
+
+.list-group {
+	max-height: 480px; /* Set the maximum height for the list */
+	overflow-y: scroll; /* Add vertical scrollbar when needed */
+}
+
+.list-group-item:hover{
+	background:rgb(87, 136, 228);
+}
+
+.list-group-item.active {
+	background-color: #007bff; /* Change this to the desired background color */
+	color: #fff; /* Change this to the desired text color */
+  }
+	
